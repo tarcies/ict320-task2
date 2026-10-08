@@ -1,0 +1,13 @@
+id,name,description,price,stock,created_at
+1,Tent - 4 Person,Spacious summer tent with good ventilation,35.00,5,1694500000
+2,Tent - 2 Person,Lightweight backpacking tent,22.00,8,1694500000
+3,Sleeping Bag - Summer,Lightweight summer sleeping bag (750g),20.00,10,1694500000
+4,Sleeping Bag - Winter,Heavy-duty winter sleeping bag (-10°C),28.00,6,1694500000
+5,Sleeping Pad,Foam insulated sleeping pad,15.00,12,1694500000
+6,Backpack - 60L,Large capacity trekking backpack,65.00,4,1694500000
+7,Backpack - 30L,Day hiking backpack,40.00,7,1694500000
+8,Hiking Boots - Size 10,Waterproof trekking boots,60.00,3,1694500000
+9,Camping Stove,Portable gas camping stove with fuel,35.00,5,1694500000
+10,Water Bottle,1L insulated water bottle,9.00,20,1694500000
+11,Headlamp,LED headlamp with adjustable brightness,16.00,9,1694500000
+12,Climbing Rope - 50m,Static climbing rope 10mm diameter,48.00,2,1694500000

@@ -1,0 +1,48 @@
+{% extends "base.html" %} {% block content %}
+<p class="h1" style="text-align: center">Equipment Catalogue</p>
+
+{% if not catalogue %}
+<p class="h2">There is currently no available equipment</p>
+{% else %}
+<div class="catalogue">
+  {% for equipId, details in catalogue.items() %}
+  <div class="card">
+    <p class="h2">{{ details.name }}</p>
+    <p class="body">{{ details.desc }}</p>
+    <p class="h2" style="color: var(--accent)">
+      ${{ details.price }}<span class="label">/day</span>
+    </p>
+
+    {% if details.stock|int > 0 %}
+    <form method="POST" action="/rentals/add">
+      <div class="return">
+        <label>Return Date:</label>
+        <input
+          type="date"
+          class="name"
+          name="returnDate"
+          min="{{minDate}}"
+          required
+        />
+      </div>
+      <div class="stock">
+        <input type="hidden" name="equipId" value="{{ equipId }}" />
+        <input
+          type="number"
+          name="qty"
+          class="input"
+          min="1"
+          max="{{ details.stock }}"
+          value="1"
+        />
+        <p class="h2 qty">/{{details.stock}}</p>
+      </div>
+      <button type="submit" class="btn btn-primary">Rent</button>
+    </form>
+    {% else %}
+    <button class="btn btn-secondary" disabled>Out of Stock</button>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+{% endif %} {% endblock %}

@@ -1,0 +1,79 @@
+{% extends "base.html" %} {% block content %}
+<div>
+  <div class="header">
+    <div class="header-title">
+      <p class="system-label">AUSTRALIAN OUTDOOR EQUIPMENT</p>
+      <p class="display">TrailHire</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin: var(--space-8) 0; width: 50%">
+    <form method="post">
+      <div class="input-group">
+        <label for="fname" class="label input-label">First Name</label>
+        <input
+          type="text"
+          id="fname"
+          class="input"
+          name="fname"
+          placeholder="John"
+          required
+        />
+      </div>
+      <div class="input-group">
+        <label for="email" class="label input-label">E-Mail</label>
+        <input
+          type="email"
+          id="email"
+          class="input"
+          name="email"
+          placeholder="example@email.com"
+          required
+        />
+      </div>
+      <div class="input-group">
+        <label for="password" class="label input-label">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="input"
+          name="password"
+          required
+        />
+      </div>
+      <div class="input-group">
+        <label for="sq" class="label input-label">Security Question</label>
+        <select
+          id="sq"
+          class="input"
+          name="sq"
+          placeholder="example@email.com"
+          required
+        >
+          {% for question in questions %}
+          <option>{{ question }}</option>
+          {% endfor %}
+        </select>
+        <div class="input-group">
+          <label for="sa" class="label input-label">Security Answer</label>
+          <input type="text" id="sa" class="input" name="sa" required />
+        </div>
+      </div>
+      <input
+        type="submit"
+        value="Sign Up"
+        class="btn btn-primary motion-up-hover motion-down-active easing-base submit"
+      />
+
+      {% if res and msg != 'start' %}
+      <p class="label auth" style="color: var(--success)">
+        Successfully signed up.
+      </p>
+      {% elif not res %}
+      <p class="label auth" style="color: var(--danger)">{{ msg }}</p>
+      {% endif %}
+    </form>
+    <a href="./login" style="text-align: center">Already a user? Log in</a>
+  </div>
+</div>
+{% endblock %}

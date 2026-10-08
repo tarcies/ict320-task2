@@ -1,0 +1,6 @@
+email,password,first_name,is_admin,security_question,security_answer
+john.doe@trailhire.com,SecurePass123!,John,0,What is your pet's name?,Fluffy
+sarah.smith@trailhire.com,MySecurePass456!,Sarah,0,What city were you born in?,Sydney
+emma.wilson@trailhire.com,TrialPass789!,Emma,0,What is your mother's maiden name?,Johnson
+mike.brown@trailhire.com,BrownPass2024!,Mike,0,What was your first car?,Toyota Corolla
+admin@trailhire.com,AdminSecure2024!,Admin,1,What is your favorite book?,The Hobbit

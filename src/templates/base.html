@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Syne:wght@400;500;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <title>{% block title %}TrailHire{% endblock %}</title>
+  </head>
+  <body>
+    <div class="page">
+      {% if user %}
+      <p class="body" style="text-align: right; padding-right: var(--space-8)">
+        Signed in as
+        <span style="color: var(--accent); font-weight: 800">{{ user }}</span>
+        {% endif %}
+      </p>
+      <nav class="navigation">
+        <div class="header">
+          <div class="header-title">
+            <p class="display">TrailHire</p>
+          </div>
+        </div>
+        <ul style="">
+          {% if user %}
+          <!-- User pages -->
+          <li><a href="/catalogue">Catalogue</a></li>
+          <li><a href="/user/rentals">Rentals</a></li>
+          {% if is_admin %}
+          <!-- Admin pages -->
+          <li><a href="/admin/equipment" style="color: red">Equipment</a></li>
+          <li><a href="/admin/users" style="color: red">Users</a></li>
+          {% endif %}
+          <li><a href="/logout">Logout</a></li>
+          {% else %}
+          <!-- Login/Signup only -->
+          <li><a href="/auth/login">Login</a></li>
+          <li><a href="/auth/signup">Sign Up</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+
+      <!-- Page Content -->
+      {% block content %}{% endblock %}
+
+      <footer>
+        <div class="footer">
+          <div class="footer-logo">
+            <p class="display">TrailHire<span>.</span></p>
+            <span class="label">Outdoor Equipment Rental App</span>
+          </div>
+          <div class="footer-copyright">
+            <p>© 2026 tarcies. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

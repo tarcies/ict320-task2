@@ -1,0 +1,90 @@
+{% extends "base.html" %} {% block content %}
+<div>
+  <div class="header">
+    <div class="header-title">
+      <p class="system-label">AUSTRALIAN OUTDOOR EQUIPMENT</p>
+      <p class="display">TrailHire</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin: var(--space-8) 0; min-width: 50%">
+    <form method="post">
+      {% if not email or not question %}
+      <div class="input-group">
+        <label for="email" class="label input-label">E-Mail</label>
+        <input
+          type="email"
+          id="email"
+          class="input"
+          name="email"
+          placeholder="example@email.com"
+          required
+        />
+      </div>
+      {% elif email and question %}
+      <p class="h2" style="text-align: center; line-height: 2">{{email}}</p>
+
+      <!-- DON'T REMOVE - this element passes the stored email to stage 2,
+        I hate it, but I don't have time for JS -->
+      <input
+        type="text"
+        id="email"
+        name="email"
+        value="{{email}}"
+        style="display: none"
+        hidden
+      />
+      <input
+        type="text"
+        id="question"
+        name="question"
+        value="{{question}}"
+        style="display: none"
+        hidden
+      />
+
+      <div class="input-group">
+        <label for="answer" class="label input-label">{{question}}</label>
+        <input type="text" class="input" name="answer" required />
+      </div>
+
+      <div class="input-group">
+        <label for="password" class="label input-label">New Password</label>
+        <input
+          type="password"
+          id="password"
+          class="input"
+          name="pass1"
+          required
+        />
+      </div>
+      <div class="input-group">
+        <label for="password" class="label input-label">Password Again</label>
+        <input
+          type="password"
+          id="password"
+          class="input"
+          name="pass2"
+          required
+        />
+      </div>
+      {% if res and not msg%}
+      <p class="label auth" style="color: var(--success)">
+        Password reset successful.
+      </p>
+      {% else %}
+      <p class="label auth" style="color: var(--danger)">{{ msg }}</p>
+      {% endif %} {% endif %} {% if email and not question and not res and not
+      msg %}
+      <p class="label auth" style="color: var(--danger)">Email not found</p>
+      {% endif %}
+      <input
+        type="submit"
+        value="Sign Up"
+        class="btn btn-primary motion-up-hover motion-down-active easing-base submit"
+      />
+    </form>
+    <a href="./login" style="text-align: center">Back to login</a>
+  </div>
+</div>
+{% endblock %}

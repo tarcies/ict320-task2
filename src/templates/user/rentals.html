@@ -1,0 +1,47 @@
+{% extends "base.html" %} {% block content %}
+<p class="h1" style="text-align: center">{{ name }}'s Rentals</p>
+
+{% if not rentals %}
+<div class="no-rentals h2">
+  <p>You have no active rentals</p>
+  <p><a href="/catalogue">Browse Catalogue</a></p>
+</div>
+{% else %}
+<div class="catalogue">
+  {% for rentalId, rental in rentals.items() %}
+  <div class="card">
+    <p class="h2">{{ rental.name }}</p>
+    <p class="body">{{ rental.desc }}</p>
+
+    <div class="stock">
+      <p class="label rent-price">
+        {{ rental.price }}/day × {{ rental.qty }} qty × {{ rental.daysRented }}
+        day{% if rental.daysRented > 1 %}s{% endif %} =
+        <br />
+        <span class="h2" style="color: var(--accent)">${{ rental.total }}</span>
+      </p>
+    </div>
+
+    <form method="POST" class="rental-btn" action="/rentals/remove">
+      {% if rental.daysLeft <= 2 %}
+      <p class="body" style="color: var(--danger)">{% else %}</p>
+
+      <p class="body">
+        {% endif %} Expires on: <strong>{{ rental.expiryDate }}</strong><br />
+        {% if rental.daysLeft < 0 %}
+        <strong>EXPIRED</strong> {% else %}
+        <strong>
+          {{ rental.daysLeft }} day{% if rental.daysLeft > 1 %}s{% endif %} left
+        </strong>
+        {% endif %}
+      </p>
+      <input type="hidden" name="rentalId" value="{{ rentalId }}" />
+      <button type="submit" class="btn btn-danger">Return Equipment</button>
+    </form>
+  </div>
+  {% endfor %}
+</div>
+<p class="h2" style="text-align: center; margin-bottom: var(--space-8)">
+  <a href="/catalogue">Browse More Equipment</a>
+</p>
+{% endif %} {% endblock %}
