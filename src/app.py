@@ -9,13 +9,17 @@ import redis
 import csv
 import random
 import bcrypt
+import os
+from dotenv import load_dotenv
 
-r = redis.Redis(
-    host='redis-10494.c53.west-us.azure.cloud.redislabs.com',
+load_dotenv()
+
+r = redis.Redis(    
+    host=os.getenv("HOST"),
     port=10494,
     decode_responses=True,
-    username="default",
-    password="x3IvJ1v7Y9KRTrf1Bnvag8lrpsaafEIb",
+    username=os.getenv("USER"),
+    password=os.getenv("PASSWORD"),
 )
 
 usersPath = './data/users.csv'
